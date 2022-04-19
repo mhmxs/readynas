@@ -1,0 +1,15 @@
+[Unit]
+Description=Dtarr service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=readynas
+ExecStart=/usr/bin/docker run -d -v /var/lib/dtarr/server:/app/server -v /var/lib/dtarr/configs:/app/configs -v /var/log/dtarr:/app/logs -v /media:/media -v /tmp:/temp -e "serverIP=0.0.0.0" -e "serverPort=8266" -e "webUIPort=8265" -e "internalNode=true" -e "nodeID=readynas" -e "nodeIP=0.0.0.0" -e "nodePort=8267" --network bridge -p 8265:8265 -p 8266:8266 -e "TZ=Europe/Budapest" -e PUID=1000 -e PGID=1000 --device=/dev/dri:/dev/dri --log-opt max-size=10m --log-opt max-file=5 ghcr.io/haveagitgat/tdarr
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
