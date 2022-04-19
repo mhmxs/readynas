@@ -1,5 +1,5 @@
 [Unit]
-Description=Dtarr service
+Description=Tdarr service
 After=docker.service
 Requires=docker.service
 
