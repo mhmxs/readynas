@@ -1,0 +1,11 @@
+[Unit]
+Description=Rtorrent servcei
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/bin/su readynas -c "screen -d -S rtorrent -m rtorrent rtorrent"
+ExecStop=/bin/su readynas -c "screen -X -S rtorrent quit"
+
+[Install]
+WantedBy=multi-user.target
