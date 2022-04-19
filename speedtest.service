@@ -1,0 +1,15 @@
+[Unit]
+Description=Speedtest service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=readynas
+ExecStart=/usr/bin/docker run --rm --name %n -e MODE=standalone -p 8000:80 adolfintel/speedtest
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
