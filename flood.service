@@ -1,0 +1,15 @@
+[Unit]
+Description=Flood service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=readynas
+ExecStart=/usr/bin/docker run --rm --name %n -v /var/lib/flood/config:/home/download/.local/share/flood -v /var/lib/flood/data:/data -p 8112:3000 jesec/flood:4.7.0
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
