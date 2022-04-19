@@ -1,0 +1,2 @@
+/home/readynas  192.168.3.0/24(rw,sync,no_subtree_check,all_squash,insecure,anonuid=1000,anongid=1000)
+/media/wd/data  192.168.3.0/24(rw,sync,no_subtree_check,all_squash,insecure,anonuid=1000,anongid=1000)
