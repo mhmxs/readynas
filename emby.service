@@ -7,7 +7,7 @@ Requires=docker.service
 TimeoutStartSec=0
 Restart=always
 User=readynas
-ExecStart=/usr/bin/docker run --rm --name %n -v /var/lib/emby:/config -v /media/wd/data:/media/wd/data --device /dev/dri:/dev/dri -p 8096:8096 -e UID=1000 -e GID=1000 emby/embyserver:4.6.0.39
+ExecStart=/usr/bin/docker run --rm --name %n -v /var/lib/emby:/config -v /media/wd/data:/media/wd/data -p 8096:8096 -e UID=1000 -e GID=1000 emby/embyserver:4.6.0.39
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
