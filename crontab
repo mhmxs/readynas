@@ -5,3 +5,4 @@
 0 6 * * * rsync -az /var/lib/emby /home/readynas/data/backup/services/var/lib
 0 6 * * * rsync -az /var/lib/dtarr /home/readynas/data/backup/services/var/lib
 0 6 * * * rsync -az /var/lib/flood /home/readynas/data/backup/services/var/lib
+0 6 * * * rsync -az /var/lib/portainer /home/readynas/data/backup/services/var/lib
