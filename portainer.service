@@ -1,5 +1,5 @@
 [Unit]
-Description=Flood service
+Description=Portainer service
 After=docker.service
 Requires=docker.service
 
