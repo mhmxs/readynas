@@ -1,3 +1,5 @@
+system.daemon.set = true
+
 directory.default.set = /media/wd/data
 
 schedule2 = watch_directory_film,20,10,"load.start=/media/wd/data/Watch/film/*.torrent,d.directory.set=/media/wd/data/Watch/film/,d.custom1.set=film"
