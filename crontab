@@ -1,4 +1,4 @@
-*/30 * * * * U=mhmxs P=s9t5g9o^ L=/media/wd/data/Watch/sorozat /opt/tvstore.sh
+*/30 * * * * U=**** P=******** L=/media/wd/data/Watch/sorozat /opt/tvstore.sh
 */30 * * * * U=https://bithumen.be/personalrss/mhmxs_ce2bf271213224b5eaeb3d88e793371b.xml L=/media/wd/data/Watch/film D=/home/readynas/.bithumen /opt/bithumen.py
 0 2 * * * /home/readynas/.dump.sh
 0 4 * * * /home/readynas/.sync.sh
