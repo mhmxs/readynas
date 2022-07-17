@@ -1,0 +1,15 @@
+[Unit]
+Description=Jellyfin service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=readynas
+ExecStart=/usr/bin/docker run --rm --name %n -v /var/lib/jellyfin/config:/config -v /media/wd/data:/media/wd/data -p 9096:8096 -e HOME=/root -e LANG=en_US.UTF-8 -e LANGUAGE=en_US.UTF-8 -e PUID=1000 -e PGID=1000 linuxserver/jellyfin:10.8.1
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
