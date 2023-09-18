@@ -7,5 +7,5 @@
 0 6 * * * rsync -az /var/lib/dtarr /home/readynas/data/backup/services/var/lib
 0 6 * * * rsync -az /var/lib/flood /home/readynas/data/backup/services/var/lib
 0 6 * * * rsync -az /var/lib/portainer /home/readynas/data/backup/services/var/lib
-0 6 * * * rsync -az /etc/systemd/system/ /home/readynas/data/backup/services/
+0 6 * * * rsync -az --include='*.service' --exclude='*' /etc/systemd/system/ /home/readynas/data/backup/services/
 # */15 * * * * sh -c 'speedtest --no-upload --single --csv >> /home/readynas/speedtest'
