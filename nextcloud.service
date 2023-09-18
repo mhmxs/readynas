@@ -1,13 +1,13 @@
 [Unit]
 Description=Nextcloud service
-After=docker.service
-Requires=docker.service
+After=mariadb.service
+Requires=mariadb.service
 
 [Service]
 TimeoutStartSec=0
 Restart=always
 User=readynas
-ExecStart=/usr/bin/docker run --rm --name %n -e PUID=1000 -e PGID=1000 -e TZ=Europe/Budapest -v /var/lib/nextcloud:/config -v /media/wd/data/nextcloud:/data -p 7443:443 ghcr.io/linuxserver/nextcloud:php8-version-23.0.3
+ExecStart=/usr/bin/docker run --rm --name %n --link mariadb.service -e PUID=1000 -e PGID=1000 -e TZ=Europe/Budapest -e OVERWRITEHOST=mhmxs.duckdns.org -v /var/lib/nextcloud:/config -v /media/wd/data/nextcloud:/data -p 7443:443 linuxserver/nextcloud:27.0.1
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
