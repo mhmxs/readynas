@@ -21,7 +21,7 @@ while [[ $exit == 0 ]]; do
     for torrent in $news; do
         if [[ "$torrent" ]]; then
             details=$(curl -s -b cookie "https://tvstore.me/torrent/br_process.php?id=$torrent")
-            if [[ $details = *"- Hun -"* ]] || [[ $details = *"- Hun/Eng -"* ]]; then
+            if [[ $details = *" - Hun"* ]]; then
                 series=$(echo "$details" | cut -d'\' -f5)
                 episode=$(echo "$details" | cut -d'\' -f7)
                 if [[ $episode = *"x"* ]]; then
