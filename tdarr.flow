@@ -1,0 +1,416 @@
+{
+  "name": "Multi mode",
+  "description": "Multi mode",
+  "tags": "",
+  "flowPlugins": [
+    {
+      "name": "Input File",
+      "sourceRepo": "Community",
+      "pluginName": "inputFile",
+      "version": "1.0.0",
+      "inputsDB": {},
+      "id": "UwSj-dF4Pl",
+      "position": {
+        "x": -181.08735020739945,
+        "y": -791.8336372381523
+      }
+    },
+    {
+      "name": "Run Classic Transcode Plugin: Tdarr_Plugin_00td_action_standardise_audio_stream_codecs",
+      "sourceRepo": "Community",
+      "pluginName": "runClassicTranscodePlugin",
+      "version": "2.0.0",
+      "inputsDB": {
+        "pluginSourceId": "Community:Tdarr_Plugin_00td_action_standardise_audio_stream_codecs",
+        "audioCodec": "aac"
+      },
+      "id": "SBgh0CEFw1",
+      "position": {
+        "x": 168.7110788292972,
+        "y": -363.0838897539186
+      }
+    },
+    {
+      "name": "Run Classic Transcode Plugin: Tdarr_Plugin_00td_action_re_order_all_streams_v2",
+      "sourceRepo": "Community",
+      "pluginName": "runClassicTranscodePlugin",
+      "version": "2.0.0",
+      "inputsDB": {
+        "pluginSourceId": "Community:Tdarr_Plugin_00td_action_re_order_all_streams_v2",
+        "languages": "hun,eng",
+        "codecs": "acc,ac3"
+      },
+      "id": "G6eNRqa8zo",
+      "position": {
+        "x": 168.7110788292972,
+        "y": -263.0838897539186
+      }
+    },
+    {
+      "name": "Run Classic Transcode Plugin: Tdarr_Plugin_076a_re_order_audio_streams",
+      "sourceRepo": "Community",
+      "pluginName": "runClassicTranscodePlugin",
+      "version": "2.0.0",
+      "inputsDB": {
+        "pluginSourceId": "Community:Tdarr_Plugin_076a_re_order_audio_streams",
+        "preferred_language": "hun"
+      },
+      "id": "t4dFdO8Fc9",
+      "position": {
+        "x": 168.7110788292972,
+        "y": -163.08388975391858
+      }
+    },
+    {
+      "name": "Run Classic Transcode Plugin: Tdarr_Plugin_076b_re_order_subtitle_streams",
+      "sourceRepo": "Community",
+      "pluginName": "runClassicTranscodePlugin",
+      "version": "2.0.0",
+      "inputsDB": {
+        "pluginSourceId": "Community:Tdarr_Plugin_076b_re_order_subtitle_streams",
+        "preferred_language": "hun"
+      },
+      "id": "yu18Da1CP1",
+      "position": {
+        "x": 168.7110788292972,
+        "y": -63.083889753918584
+      }
+    },
+    {
+      "name": "Run Classic Transcode Plugin: Tdarr_Plugin_MC93_MigzImageRemoval",
+      "sourceRepo": "Community",
+      "pluginName": "runClassicTranscodePlugin",
+      "version": "2.0.0",
+      "inputsDB": {
+        "pluginSourceId": "Community:Tdarr_Plugin_MC93_MigzImageRemoval"
+      },
+      "id": "fGtZNXqnXB",
+      "position": {
+        "x": 168.7110788292972,
+        "y": 36.916110246081416
+      }
+    },
+    {
+      "name": "Run Classic Transcode Plugin: Tdarr_Plugin_00td_action_handbrake_basic_options",
+      "sourceRepo": "Community",
+      "pluginName": "runClassicTranscodePlugin",
+      "version": "2.0.0",
+      "inputsDB": {
+        "pluginSourceId": "Community:Tdarr_Plugin_00td_action_handbrake_basic_options",
+        "handbrakePreset": "H.265 MKV 1080p30",
+        "videoEncoder": "nvenc_h265",
+        "keepSubtitles": "true"
+      },
+      "id": "Jmbntf2agy1",
+      "position": {
+        "x": 35.588836288673065,
+        "y": 325.0917824247306
+      }
+    },
+    {
+      "name": "Run Classic Transcode Plugin: Tdarr_Plugin_MC93_Migz1FFMPEG_CPU",
+      "sourceRepo": "Community",
+      "pluginName": "runClassicTranscodePlugin",
+      "version": "2.0.0",
+      "inputsDB": {
+        "pluginSourceId": "Community:Tdarr_Plugin_MC93_Migz1FFMPEG_CPU",
+        "bitrate_cutoff": "12000"
+      },
+      "id": "Eun1Xl48fbH",
+      "position": {
+        "x": 227.68016081446302,
+        "y": 339.8172200855331
+      }
+    },
+    {
+      "name": "Run Classic Transcode Plugin: Tdarr_Plugin_a9he_New_file_size_check",
+      "sourceRepo": "Community",
+      "pluginName": "runClassicTranscodePlugin",
+      "version": "2.0.0",
+      "inputsDB": {
+        "pluginSourceId": "Community:Tdarr_Plugin_a9he_New_file_size_check",
+        "upperBound": "110"
+      },
+      "id": "W0ernyxZU6H",
+      "position": {
+        "x": 142.6592228454557,
+        "y": 519.2002667760837
+      }
+    },
+    {
+      "name": "Check Node Hardware Encoder",
+      "sourceRepo": "Community",
+      "pluginName": "checkNodeHardwareEncoder",
+      "version": "1.0.0",
+      "id": "lFy_a25QP",
+      "position": {
+        "x": 168.79869308745845,
+        "y": 136.86949417819002
+      }
+    },
+    {
+      "name": "Check Video Resolution",
+      "sourceRepo": "Community",
+      "pluginName": "checkVideoResolution",
+      "version": "1.0.0",
+      "id": "fvTiv1ZiE",
+      "position": {
+        "x": -105.32617287259015,
+        "y": -457.9352287300845
+      }
+    },
+    {
+      "name": "Check File Medium",
+      "sourceRepo": "Community",
+      "pluginName": "checkFileMedium",
+      "version": "1.0.0",
+      "id": "6xXh18MP9",
+      "position": {
+        "x": -208.3998182662815,
+        "y": -729.9720978582035
+      }
+    },
+    {
+      "name": "Move To Original Directory",
+      "sourceRepo": "Community",
+      "pluginName": "moveToOriginalDirectory",
+      "version": "1.0.0",
+      "id": "75tL9HZdt",
+      "position": {
+        "x": 147.84941687534217,
+        "y": 676.9737015857215
+      }
+    },
+    {
+      "name": "Check Video Codec",
+      "sourceRepo": "Community",
+      "pluginName": "checkVideoCodec",
+      "version": "1.0.0",
+      "id": "hecXRB65x",
+      "position": {
+        "x": -1.1674566290441817,
+        "y": -635.4463418969568
+      }
+    },
+    {
+      "name": "Check Video Bitrate",
+      "sourceRepo": "Community",
+      "pluginName": "checkVideoBitrate",
+      "version": "1.0.0",
+      "id": "Aks-z9In2",
+      "position": {
+        "x": -239.38111358151394,
+        "y": -639.1069012373883
+      },
+      "inputsDB": {
+        "greaterThan": "0",
+        "lessThan": "18000"
+      }
+    }
+  ],
+  "flowEdges": [
+    {
+      "source": "SBgh0CEFw1",
+      "sourceHandle": "1",
+      "target": "G6eNRqa8zo",
+      "targetHandle": null,
+      "id": "aD9NgWrseh"
+    },
+    {
+      "source": "SBgh0CEFw1",
+      "sourceHandle": "2",
+      "target": "G6eNRqa8zo",
+      "targetHandle": null,
+      "id": "lHj4RTOVw8"
+    },
+    {
+      "source": "G6eNRqa8zo",
+      "sourceHandle": "1",
+      "target": "t4dFdO8Fc9",
+      "targetHandle": null,
+      "id": "BraM0qhq7p"
+    },
+    {
+      "source": "G6eNRqa8zo",
+      "sourceHandle": "2",
+      "target": "t4dFdO8Fc9",
+      "targetHandle": null,
+      "id": "6PjZx3ID14"
+    },
+    {
+      "source": "t4dFdO8Fc9",
+      "sourceHandle": "1",
+      "target": "yu18Da1CP1",
+      "targetHandle": null,
+      "id": "1znBmWsurx"
+    },
+    {
+      "source": "t4dFdO8Fc9",
+      "sourceHandle": "2",
+      "target": "yu18Da1CP1",
+      "targetHandle": null,
+      "id": "TEMNUZQ0Mz"
+    },
+    {
+      "source": "yu18Da1CP1",
+      "sourceHandle": "1",
+      "target": "fGtZNXqnXB",
+      "targetHandle": null,
+      "id": "iwVWrMlxOO"
+    },
+    {
+      "source": "yu18Da1CP1",
+      "sourceHandle": "2",
+      "target": "fGtZNXqnXB",
+      "targetHandle": null,
+      "id": "7Wy9rkWUwZ"
+    },
+    {
+      "source": "Eun1Xl48fbH",
+      "sourceHandle": "1",
+      "target": "W0ernyxZU6H",
+      "targetHandle": null,
+      "id": "eVerSQd24Sn"
+    },
+    {
+      "source": "Eun1Xl48fbH",
+      "sourceHandle": "2",
+      "target": "W0ernyxZU6H",
+      "targetHandle": null,
+      "id": "5Md9L1CXEi1"
+    },
+    {
+      "source": "lFy_a25QP",
+      "sourceHandle": "2",
+      "target": "Eun1Xl48fbH",
+      "targetHandle": null,
+      "id": "izueFmpD-"
+    },
+    {
+      "source": "lFy_a25QP",
+      "sourceHandle": "1",
+      "target": "Jmbntf2agy1",
+      "targetHandle": null,
+      "id": "gwPI6X-pC"
+    },
+    {
+      "source": "fvTiv1ZiE",
+      "sourceHandle": "7",
+      "target": "SBgh0CEFw1",
+      "targetHandle": null,
+      "id": "90A0swI8g"
+    },
+    {
+      "source": "fvTiv1ZiE",
+      "sourceHandle": "8",
+      "target": "SBgh0CEFw1",
+      "targetHandle": null,
+      "id": "ZAZvZlmGJ"
+    },
+    {
+      "source": "UwSj-dF4Pl",
+      "sourceHandle": "1",
+      "target": "6xXh18MP9",
+      "targetHandle": null,
+      "id": "21iKPa6fV"
+    },
+    {
+      "source": "W0ernyxZU6H",
+      "sourceHandle": "2",
+      "target": "75tL9HZdt",
+      "targetHandle": null,
+      "id": "J7wDihWOM"
+    },
+    {
+      "source": "W0ernyxZU6H",
+      "sourceHandle": "1",
+      "target": "75tL9HZdt",
+      "targetHandle": null,
+      "id": "0lhRf9JOr"
+    },
+    {
+      "source": "fvTiv1ZiE",
+      "sourceHandle": "4",
+      "target": "SBgh0CEFw1",
+      "targetHandle": null,
+      "id": "84A-4kwo4"
+    },
+    {
+      "source": "fvTiv1ZiE",
+      "sourceHandle": "5",
+      "target": "SBgh0CEFw1",
+      "targetHandle": null,
+      "id": "Uv6KnW62l"
+    },
+    {
+      "source": "fvTiv1ZiE",
+      "sourceHandle": "6",
+      "target": "SBgh0CEFw1",
+      "targetHandle": null,
+      "id": "Wm5NSH2mK"
+    },
+    {
+      "source": "fGtZNXqnXB",
+      "sourceHandle": "1",
+      "target": "lFy_a25QP",
+      "targetHandle": null,
+      "id": "84cBftDjT"
+    },
+    {
+      "source": "fGtZNXqnXB",
+      "sourceHandle": "2",
+      "target": "lFy_a25QP",
+      "targetHandle": null,
+      "id": "p2utQQ5L7"
+    },
+    {
+      "source": "Jmbntf2agy1",
+      "sourceHandle": "1",
+      "target": "W0ernyxZU6H",
+      "targetHandle": null,
+      "id": "XLIOgX9xx"
+    },
+    {
+      "source": "Jmbntf2agy1",
+      "sourceHandle": "2",
+      "target": "W0ernyxZU6H",
+      "targetHandle": null,
+      "id": "lT_bwMHfH"
+    },
+    {
+      "source": "fvTiv1ZiE",
+      "sourceHandle": "3",
+      "target": "SBgh0CEFw1",
+      "targetHandle": null,
+      "id": "cpN82nxOX"
+    },
+    {
+      "source": "6xXh18MP9",
+      "sourceHandle": "1",
+      "target": "hecXRB65x",
+      "targetHandle": null,
+      "id": "AmY4YLan9"
+    },
+    {
+      "source": "hecXRB65x",
+      "sourceHandle": "2",
+      "target": "fvTiv1ZiE",
+      "targetHandle": null,
+      "id": "WY8xUGNUj"
+    },
+    {
+      "source": "hecXRB65x",
+      "sourceHandle": "1",
+      "target": "Aks-z9In2",
+      "targetHandle": null,
+      "id": "TW6jtywwm"
+    },
+    {
+      "source": "Aks-z9In2",
+      "sourceHandle": "2",
+      "target": "fvTiv1ZiE",
+      "targetHandle": null,
+      "id": "OY8yyBVFu"
+    }
+  ]
+}
