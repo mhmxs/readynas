@@ -7,7 +7,8 @@ schedule2 = watch_directory_ismterj,21,10,"load.start=/media/wd/data/Watch/ismte
 schedule2 = watch_directory_mese,22,10,"load.start=/media/wd/data/Watch/mese/*.torrent,d.directory.set=/media/wd/data/Watch/mese/,d.custom1.set=mese"
 schedule2 = watch_directory_sorozat,23,10,"load.start=/media/wd/data/Watch/sorozat/*.torrent,d.directory.set=/media/wd/data/Watch/sorozat/,d.custom1.set=sorozat"
 schedule2 = watch_directory_verseny,24,10,"load.start=/media/wd/data/Watch/verseny/*.torrent,d.directory.set=/media/wd/data/Watch/verseny/,d.custom1.set=verseny"
-schedule2 = untied_directory,25,10,stop_untied=
+schedule2 = watch_directory_mese,25,10,"load.start=/media/wd/data/Watch/mesefilm/*.torrent,d.directory.set=/media/wd/data/Watch/mesefilm/,d.custom1.set=mese"
+schedule2 = untied_directory,26,10,stop_untied=
 
 method.insert = d.data_path,simple,"if=(d.is_multi_file),(cat,(d.directory),/),(cat,(d.directory),/,(d.name))"
 method.insert = d.target_path,simple,"cat=/media/wd/data/Movies/,$d.custom1="
