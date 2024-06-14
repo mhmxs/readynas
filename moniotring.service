@@ -1,0 +1,14 @@
+[Unit]
+Description=Monitoring service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=readynas
+ExecStart=/usr/bin/docker-compose -f /etc/monitoring/docker-compose.yaml up
+ExecStop=/usr/bin/docker-compose -f /etc/monitoring/docker-compose.yaml down
+
+[Install]
+WantedBy=multi-user.target
