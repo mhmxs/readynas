@@ -1,0 +1,175 @@
+version: '3.8'
+
+services:
+  tdarr:
+    image: ghcr.io/haveagitgat/tdarr:2.19.01
+    container_name: tdarr
+    environment:
+      - serverIP=0.0.0.0
+      - serverPort=8266
+      - webUIPort=8265
+      - internalNode=true
+      - nodeID=readynas
+      - TZ=Europe/Budapest
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /var/lib/tdarr/backup:/app/server/Tdarr/Backups
+      - /var/lib/tdarr/server:/app/server
+      - /var/lib/tdarr/configs:/app/configs
+      - /var/log/tdarr:/app/logs
+      - /media:/media
+      - /tmp:/temp
+    ports:
+      - 8265:8265
+      - 8266:8266
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+    networks:
+      - bridge
+
+  swag:
+    image: linuxserver/swag:1.29.0
+    container_name: swag
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Budapest
+      - URL=mhmxs.duckdns.org
+      - VALIDATION=duckdns
+      - DUCKDNSTOKEN=5daa2fff-53b5-430b-a3e1-add59517f77b
+      - SUBDOMAINS=jellyfin,flood,nextcloud
+    volumes:
+      - /var/lib/swag/config:/config
+    ports:
+      - 81:80
+      - 443:443
+    networks:
+      - bridge
+
+  speedtest:
+    image: adolfintel/speedtest
+    container_name: speedtest
+    environment:
+      - MODE=standalone
+    ports:
+      - 8000:80
+    networks:
+      - bridge
+
+  portainer:
+    image: portainer/portainer-ce:2.21.1
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/portainer:/data
+    ports:
+      - 9443:9443
+    networks:
+      - bridge
+
+  pihole:
+    image: pihole/pihole:2024.03.2
+    container_name: pihole
+    environment:
+      - TZ=Europe/Budapest
+      - WEBPASSWORD=s9rt5g9o6
+      - SERVERIP=192.168.3.104
+    volumes:
+      - pihole:/etc/pihole
+      - dnsmasq:/etc/dnsmasq.d
+    network_mode: host
+    restart: unless-stopped
+
+  nextcloud:
+    image: linuxserver/nextcloud:29.0.4
+    container_name: nextcloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Budapest
+      - OVERWRITEHOST=mhmxs.duckdns.org
+    volumes:
+      - /var/lib/nextcloud:/config
+      - /media/wd/data/nextcloud:/data
+    ports:
+      - 7443:443
+    networks:
+      - bridge
+
+  mariadb:
+    image: ghcr.io/linuxserver/mariadb:alpine-version-10.5.9-r0
+    container_name: mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=ihusdf982rIUHIUH87
+      - TZ=Europe/Budapest
+    volumes:
+      - /var/lib/mysql:/config
+    ports:
+      - 3306:3306
+    networks:
+      - bridge
+
+  jellyfin:
+    image: linuxserver/jellyfin:10.9.11
+    container_name: jellyfin
+    environment:
+      - HOME=/root
+      - LANG=en_US.UTF-8
+      - LANGUAGE=en_US.UTF-8
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /var/lib/jellyfin/config:/config
+      - /media/wd/data/Movies:/data
+    ports:
+      - 9096:8096
+    networks:
+      - bridge
+
+  home_gallery_1:
+    image: xemle/home-gallery:1.15.0
+    container_name: home_gallery_1
+    volumes:
+      - /media/wd/data/nextcloud/rego/files/Photos:/data/Pictures
+      - /var/lib/home-gallery:/data
+    ports:
+      - 3000:3000
+    networks:
+      - bridge
+    command: run server
+
+  home_gallery_2:
+    image: xemle/home-gallery:1.15.0
+    container_name: home_gallery_2
+    volumes:
+      - /media/wd/data/nextcloud/lenke/files/Photos:/data/Pictures
+      - /var/lib/home-gallery-1:/data
+    ports:
+      - 3001:3000
+    networks:
+      - bridge
+    command: run server
+
+  flood:
+    image: jesec/rtorrent-flood:master-distroless
+    container_name: flood
+    volumes:
+      - /var/lib/flood/data:/mnt/data0
+      - /var/lib/flood/config:/home/jc/dlconfig
+    ports:
+      - 8112:3000
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
+
+volumes:
+  pihole:
+  dnsmasq:
