@@ -1,0 +1,13 @@
+*/30 * * * * U=mhmxs P=****** L=/media/wd/data/Watch/sorozat /opt/tvstore.sh
+*/30 * * * * U=https://bithumen.be/personalrss/mhmxs_ce2bf271213224b5eaeb3d88e793371b.xml L=/media/wd/data/Watch/film D=/home/readynas/.bithumen /opt/bithumen.py
+0 5 * * * docker exec -it nextcloud.service occ files:scan --all
+0 4 * * * /home/readynas/.sync.sh
+0 1 * * * rsync -az --delete /var/lib/jellyfin /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete /var/lib/swag /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete /var/lib/dtarr /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete /var/lib/flood /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete /var/lib/portainer /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete /var/lib/home-gallery /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete /var/lib/home-gallery-1 /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete --include='*.service' --exclude='*' /etc/systemd/system/ /home/readynas/data/backup/services/
+# */15 * * * * sh -c 'speedtest --no-upload --single --csv >> /home/readynas/speedtest'
