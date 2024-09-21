@@ -12,8 +12,8 @@ schedule2 = untied_directory,26,10,stop_untied=
 
 method.insert = d.data_path,simple,"if=(d.is_multi_file),(cat,(d.directory),/),(cat,(d.directory),/,(d.name))"
 method.insert = d.target_path,simple,"cat=/media/wd/data/Movies/,$d.custom1="
-method.insert = d.move_to_complete,simple,"d.directory.set=$argument.1=; execute=mkdir,-p,$argument.1=; execute=mv,-u,-f,$argument.0=,$argument.1=; d.save_full_session="
-method.set_key = event.download.finished,move_complete,"d.move_to_complete=$d.data_path=,$d.target_path="
+method.insert = d.copy_to_complete,simple,"execute=mkdir,-p,$argument.1=; execute=cp,-r,-f,$argument.0=,$argument.1=; d.save_full_session="
+method.set_key = event.download.finished,copy_complete,"d.copy_to_complete=$d.data_path=,$d.target_path="
 
 trackers.use_udp.set = yes
 
