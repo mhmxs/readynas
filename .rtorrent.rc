@@ -14,6 +14,7 @@ method.insert = d.data_path,simple,"if=(d.is_multi_file),(cat,(d.directory),/),(
 method.insert = d.target_path,simple,"cat=/media/wd/data/Movies/,$d.custom1="
 method.insert = d.copy_to_complete,simple,"execute=mkdir,-p,$argument.1=; execute=cp,-r,-f,$argument.0=,$argument.1=; d.save_full_session="
 method.set_key = event.download.finished,copy_complete,"d.copy_to_complete=$d.data_path=,$d.target_path="
+method.set_key = event.download.erased,delete_files,"execute=rm,-rf,--,$d.data_path="
 
 trackers.use_udp.set = yes
 
