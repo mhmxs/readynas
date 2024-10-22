@@ -7,7 +7,7 @@ Requires=docker.service
 TimeoutStartSec=0
 Restart=always
 User=readynas
-ExecStart=/usr/bin/docker run --name %n -e TZ=Europe/Budapest -e WEBPASSWORD=XXXXXXXX -e SERVERIP=192.168.3.104 -v pihole:/etc/pihole -v dnsmasq:/etc/dnsmasq.d --net=host --restart=unless-stopped pihole/pihole
+ExecStart=/usr/bin/docker run --name %n --cap-add CAP_CHOWN --cap-add CAP_NET_BIND_SERVICE --cap-add CAP_NET_RAW -e TZ=Europe/Budapest -e WEBPASSWORD=XXXXXXX -v pihole:/etc/pihole -v dnsmasq:/etc/dnsmasq.d -p 192.168.3.99:80:80 -p 192.168.3.99:53:53/tcp -p 192.168.3.99:53:53/udp -e FTLCONF_LOCAL_IPV4="127.0.0.1" -e DNSMASQ_LISTENING=all --restart=unless-stopped pihole/pihole:2024.07.0
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
