@@ -7,7 +7,6 @@
 0 1 * * * rsync -az --delete /var/lib/tdarr /home/readynas/data/backup/services/var/lib
 0 1 * * * rsync -az --delete /var/lib/flood /home/readynas/data/backup/services/var/lib
 0 1 * * * rsync -az --delete /var/lib/portainer /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/home-gallery /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/home-gallery-1 /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete /var/lib/homearr /home/readynas/data/backup/services/var/lib
 0 1 * * * rsync -az --delete --include='*.service' --exclude='*' /etc/systemd/system/ /home/readynas/data/backup/services/
 # */15 * * * * sh -c 'speedtest --no-upload --single --csv >> /home/readynas/speedtest'
