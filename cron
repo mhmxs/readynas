@@ -4,7 +4,7 @@
 0 4 * * * /home/readynas/.sync.sh
 0 1 * * * rsync -az --delete /var/lib/jellyfin /home/readynas/data/backup/services/var/lib
 0 1 * * * rsync -az --delete /var/lib/swag /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/dtarr /home/readynas/data/backup/services/var/lib
+0 1 * * * rsync -az --delete /var/lib/tdarr /home/readynas/data/backup/services/var/lib
 0 1 * * * rsync -az --delete /var/lib/flood /home/readynas/data/backup/services/var/lib
 0 1 * * * rsync -az --delete /var/lib/portainer /home/readynas/data/backup/services/var/lib
 0 1 * * * rsync -az --delete /var/lib/home-gallery /home/readynas/data/backup/services/var/lib
