@@ -1,0 +1,15 @@
+[Unit]
+Description=Homearr service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=readynas
+ExecStart=/usr/bin/docker run --rm --name %n -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/homearr/configs:/app/data/configs -v /var/lib/homearr/icons:/app/public/icons -v /var/lib/homearr/data:/data -p 7575:7575 ghcr.io/ajnart/homarr:0.15.7
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
