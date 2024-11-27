@@ -1,0 +1,19 @@
+[Unit]
+Description=Wireguard service
+After=network.target
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStart=/usr/bin/docker run --rm --name %n -v /var/lib/wireguard/config:/config -v /var/lib/wireguard/modules:lib/modules -e "PUID=1000" -e "PGID=1000" -e "TZ=Europe/Budapest" -e "SERVERURL=95.214.123.19" -e "SERVERPORT=51820" -e "PEERS=5" -e "PEERDNS=8.8.8.8" -e "INTERNAL_SUBNET=10.13.13.0" -e "ALLOWEDIPS=0.0.0.0/0" -e "LOG_CONFS=true" --net=host --cap-add=NET_ADMIN linuxserver/wireguard:1.0.20210914
+ExecStartPost=-iptables -A FORWARD -i wg0 -o wg0 -j ACCEPT
+ExecStartPost=-iptables -A FORWARD -i wg0 -o enp2s0 -j ACCEPT
+ExecStartPost=-iptables -A FORWARD -i enp2s0 -o wg0 -j ACCEPT
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+ExecStopPost=-iptables -D FORWARD -i wg0 -o wg0 -j ACCEPT
+ExecStopPost=-iptables -D FORWARD -i wg0 -o enp2s0 -j ACCEPT
+ExecStopPost=-iptables -D FORWARD -i enp2s0 -o wg0 -j ACCEPT
+
+[Install]
+WantedBy=multi-user.target
