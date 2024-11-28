@@ -7,7 +7,7 @@ Requires=docker.service
 TimeoutStartSec=0
 Restart=always
 User=readynas
-ExecStart=/usr/bin/docker run --rm --name %n -v /var/lib/tdarr/backup:/app/server/Tdarr/Backups -v /var/lib/tdarr/server:/app/server -v /var/lib/tdarr/configs:/app/configs -v /var/log/tdarr:/app/logs -v /media:/media -v /tmp:/temp -e "serverIP=0.0.0.0" -e "serverPort=8266" -e "webUIPort=8265" -e "internalNode=true" -e "nodeID=readynas" -e "nodeIP=0.0.0.0" -e "nodePort=8267" --network bridge -p 8265:8265 -p 8266:8266 -e "TZ=Europe/Budapest" -e PUID=1000 -e PGID=1000 --log-opt max-size=10m --log-opt max-file=5 ghcr.io/haveagitgat/tdarr:2.00.18
+ExecStart=/usr/bin/docker run --rm --name %n -v /var/lib/tdarr/backup:/app/server/Tdarr/Backups -v /var/lib/tdarr/server:/app/server -v /var/lib/tdarr/configs:/app/configs -v /var/log/tdarr:/app/logs -v /media/wd:/media/wd -v /media/ocz/transcodes:/temp -e "serverIP=0.0.0.0" -e "serverPort=8266" -e "webUIPort=8265" -e "internalNode=true" -e "nodeID=readynas" --network bridge -p 8265:8265 -p 8266:8266 -e "TZ=Europe/Budapest" -e PUID=1000 -e PGID=1000 --log-opt max-size=10m --log-opt max-file=5 ghcr.io/haveagitgat/tdarr:2.24.05
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
