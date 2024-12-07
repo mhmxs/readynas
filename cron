@@ -1,13 +1,10 @@
-*/30 * * * * U=mhmxs P=****** L=/media/wd/data/Watch/sorozat /opt/tvstore.sh
-*/30 * * * * U=https://bithumen.be/personalrss/mhmxs_ce2bf271213224b5eaeb3d88e793371b.xml L=/media/wd/data/Watch/film D=/home/readynas/.bithumen /opt/bithumen.py
-0 5 * * * docker exec -it nextcloud.service occ files:scan --all
+*/15 * * * * U=mhmxs P=******** L=/media/wd/data/Watch/sorozat /opt/tvstore.sh
+*/15 * * * * U=https://bithumen.be/personalrss/mhmxs_ce2bf271213224b5eaeb3d88e793371b.xml L=/media/wd/data/Watch/film D=/home/readynas/.bithumen /opt/bithumen.py
+0 2 * * * docker exec -it nextcloud.service occ files:scan --all
+0 3 * * * rsync -az --delete /var/lib/gitea /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/gitea.ok
+0 3 * * * rsync -az --delete /var/lib/jellyfin /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/jellyfin.ok
+0 3 * * * rsync -az --delete /var/lib/swag /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/swag.ok
+0 3 * * * rsync -az --delete /var/lib/tdarr /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/tdarr.ok
+0 3 * * * rsync -az --delete /var/lib/homearr /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/homearr.ok
+0 3 * * * rsync -az --delete --include='*.service' --exclude='*' /etc/systemd/system/ /home/readynas/data/backup/services/ && touch /media/wd/data/backup/services.ok
 0 4 * * * /home/readynas/.sync.sh
-0 1 * * * rsync -az --delete /var/lib/gitea /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/jellyfin /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/swag /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/tdarr /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/flood /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/portainer /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete /var/lib/homearr /home/readynas/data/backup/services/var/lib
-0 1 * * * rsync -az --delete --include='*.service' --exclude='*' /etc/systemd/system/ /home/readynas/data/backup/services/
-# */15 * * * * sh -c 'speedtest --no-upload --single --csv >> /home/readynas/speedtest'
