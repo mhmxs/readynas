@@ -7,4 +7,5 @@
 0 3 * * * rsync -az --delete /var/lib/tdarr /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/tdarr.ok
 0 3 * * * rsync -az --delete /var/lib/homearr /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/homearr.ok
 0 3 * * * rsync -az --delete --include='*.service' --exclude='*' /etc/systemd/system/ /home/readynas/data/backup/services/ && touch /media/wd/data/backup/services.ok
+0 3 * * * rsync -az --min-size=1 --delete --timeout=30 --exclude *.db pi@192.168.3.108:/etc/pihole/ /media/wd/data/backup/pihole && touch /media/wd/data/backup/pihole.ok
 0 4 * * * /home/readynas/.sync.sh
