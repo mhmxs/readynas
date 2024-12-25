@@ -1,0 +1,13 @@
+[Unit]
+Description=Gitea Runner Service
+After=gitea.service
+Requires=gitea.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --rm -e GITEA_INSTANCE_URL=http://127.0.0.1:3000 -e GITEA_RUNNER_REGISTRATION_TOKEN=**** -e GITEA_RUNNER_NAME=main --name %n --network container:gitea.service -v /var/run/docker.sock:/var/run/docker.sock gitea/act_runner:latest
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
