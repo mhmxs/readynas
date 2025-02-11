@@ -8,6 +8,7 @@ Type=simple
 User=readynas
 Restart=on-failure
 RestartSec=3
+ExecStartPre=/bin/sleep 30
 ExecStartPre=/bin/rm -f /home/readynas/.rtorrent.lock
 ExecStart=/usr/bin/rtorrent
 
