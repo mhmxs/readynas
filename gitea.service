@@ -5,7 +5,7 @@ Requires=docker.service
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/docker run --rm --name %n -e USER_UID=1000 -e USER_GID=1000 -v /media/ocz/lib/gitea:/data -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro -p 5000:3000 -p 5022:22 -p 21234:21234 gitea/gitea:1.22.4
+ExecStart=/usr/bin/docker run --rm --name %n -e USER_UID=1000 -e USER_GID=1000 -v /media/ocz/lib/gitea:/data -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro -p 5000:3000 -p 5022:22 -p 21234:21234 gitea/gitea:1.23.3
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
