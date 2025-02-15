@@ -1,0 +1,13 @@
+[Unit]
+Description=Gitea Cache Service
+After=gitea.service
+Requires=gitea.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker run --rm -e CONFIG_FILE=/config.yaml --name %n -p 21234:21234 -v /media/ocz/lib/gitea/runner/config.yaml:/config.yaml -v /media/ocz/lib/gitea/runner/cache:/data --entrypoint='act_runner' -it gitea/act_runner:0.2.11 cache-server -c /config.yaml
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
