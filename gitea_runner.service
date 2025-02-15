@@ -5,7 +5,7 @@ Requires=gitea.service
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/docker run --rm -e GITEA_INSTANCE_URL=https://gitea.mhmxs.duckdns.org -e CONFIG_FILE=/config.yaml -e GITEA_RUNNER_REGISTRATION_TOKEN=**** -e GITEA_RUNNER_NAME=main --name %n --network container:gitea.service -v /media/ocz/lib/gitea/runner/config.yaml:/config.yaml -v /media/ocz/lib/gitea/runner/main:/data -v /var/run/docker.sock:/var/run/docker.sock gitea/act_runner:latest
+ExecStart=/usr/bin/docker run --rm -e GITEA_INSTANCE_URL=https://gitea.mhmxs.duckdns.org -e CONFIG_FILE=/config.yaml -e GITEA_RUNNER_REGISTRATION_TOKEN=**** -e GITEA_RUNNER_NAME=main --name %n --network container:gitea.service -v /media/ocz/lib/gitea/runner/config.yaml:/config.yaml -v /media/ocz/lib/gitea/runner/main:/data -v /var/run/docker.sock:/var/run/docker.sock gitea/act_runner:0.2.11
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
