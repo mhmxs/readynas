@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# <memballoon model='virtio'><stats period='1'/></memballoon>
+
 : ${VM_NAME?= required}
 : ${VM_THRESHOLD:=768}
 : ${VM_MAX:=4096}
