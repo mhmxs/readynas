@@ -1,0 +1,26 @@
+#!/bin/bash
+
+: ${VM_NAME?= required}
+: ${VM_THRESHOLD:=768}
+: ${VM_MAX:=4096}
+
+virsh dommemstat --domain $VM_NAME &>/dev/null || exit 0
+
+actual=$(($(virsh dommemstat --domain $VM_NAME | grep actual | awk '{print $2}')/1024))
+usable=$(($(virsh dommemstat --domain $VM_NAME | grep usable | awk '{print $2}')/1024))
+
+if [[ $usable -ge $VM_THRESHOLD ]]; then
+        if [[ $((usable-VM_THRESHOLD)) -le $VM_THRESHOLD ]]; then
+                exit 0
+        fi
+
+        virsh qemu-monitor-command $VM_NAME --hmp "balloon $((actual-(usable-VM_THRESHOLD)))"
+else
+        if [[ $actual -eq $VM_MAX ]]; then
+                exit 0
+        elif [[ $((actual+VM_THRESHOLD)) -gt $VM_MAX ]]; then
+                actual=$((VM_MAX-VM_THRESHOLD))
+        fi
+
+        virsh qemu-monitor-command $VM_NAME --hmp "balloon $((actual+(VM_THRESHOLD-usable)))"
+fi
