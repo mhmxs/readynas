@@ -1,0 +1,13 @@
+[Unit]
+Description=Reconfigure memory of VM
+
+[Service]
+Type=simple
+Environment="VM_NAME=VM"
+ExecStart=/usr/local/bin/balloon
+Restart=always
+RestartSec=5
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
