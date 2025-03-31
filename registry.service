@@ -7,7 +7,7 @@ Requires=docker.service
 TimeoutStartSec=0
 Restart=always
 User=readynas
-ExecStart=/usr/bin/docker container run --name %n -p 6000:5000 -v /media/wd/data/backup/services/var/lib/distribution:/var/lib/registry -v /media/wd/data/backup/services/var/lib/distribution/auth:/auth -e REGISTRY_AUTH=htpasswd -e REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm" -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd -u 1000:1000 registry:3.0.0-rc.4
+ExecStart=/usr/bin/docker run --rm --name %n -p 6000:5000 -u 1000:1000 -v /media/wd/data/backup/services/var/lib/distribution:/var/lib/registry -e REGISTRY_AUTH=htpasswd -e REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm" -e REGISTRY_AUTH_HTPASSWD_PATH=/var/lib/registry/auth/htpasswd registry:3.0.0-rc.4
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
