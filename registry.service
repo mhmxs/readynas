@@ -1,0 +1,15 @@
+[Unit]
+Description=Registry service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=readynas
+ExecStart=/usr/bin/docker container run --name %n -p 6000:5000 -v /media/wd/data/backup/services/var/lib/distribution:/var/lib/registry -v /media/wd/data/backup/services/var/lib/distribution/auth:/auth -e REGISTRY_AUTH=htpasswd -e REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm" -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd -u 1000:1000 registry:3.0.0-rc.4
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
