@@ -1,5 +1,6 @@
-*/15 * * * * U=mhmxs P=******** L=/media/wd/data/Watch/sorozat /opt/tvstore.sh
+*/15 * * * * U=mhmxs P=s9t5g9o^ L=/media/wd/data/Watch/sorozat /opt/tvstore.sh
 */15 * * * * U=https://bithumen.be/personalrss/mhmxs_ce2bf271213224b5eaeb3d88e793371b.xml L=/media/wd/data/Watch/film D=/home/readynas/.bithumen /opt/bithumen.py
+*/15 * * * * U=https://ncore.pro/bookmarks/6e0d15b7e80a3c8297bb72b3118578550 L=/media/wd/data/Watch/film D=/home/readynas/.ncore /opt/ncore.py
 0 2 * * * docker exec -it nextcloud.service occ files:scan --all
 0 3 * * * rsync -az --delete /media/ocz/lib/gitea /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/gitea.ok
 0 3 * * * rsync -az --delete /media/ocz/lib/jellyfin /home/readynas/data/backup/services/var/lib && touch /media/wd/data/backup/jellyfin.ok
