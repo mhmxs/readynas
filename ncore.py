@@ -21,7 +21,7 @@ root = et.fromstring(feed)
 
 for item in root[0].findall('item'):
     url = item.find('link').text
-    name = url.split('=')[-1]
+    name = url.split('=')[-2].split('/')[0]
 
     if name + '\n' in existing:
         continue
