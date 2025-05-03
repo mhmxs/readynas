@@ -16,6 +16,7 @@ method.insert = d.copy_to_complete,simple,"execute=mkdir,-p,$argument.1=; execut
 method.set_key = event.download.finished,copy_complete,"d.copy_to_complete=$d.data_path=,$d.target_path="
 method.set_key = event.download.erased,delete_files,"execute=rm,-rf,--,$d.data_path="
 
+
 trackers.use_udp.set = yes
 
 protocol.encryption.set = allow_incoming,enable_retry,try_outgoing
@@ -27,4 +28,4 @@ dht.port.set = 6880
 
 protocol.pex.set = yes
 
-scgi_port = 172.17.0.1:8113
+scgi_port = 0.0.0.0:8113
