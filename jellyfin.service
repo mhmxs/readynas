@@ -7,7 +7,7 @@ Requires=docker.service
 TimeoutStartSec=0
 Restart=always
 User=readynas
-ExecStart=/usr/bin/docker run --rm --name %n -v /media/ocz/lib/jellyfin/config:/config -v /media/ocz/transcodes:/config/data/transcodes -v /media/wd/data/Movies:/data -p 9096:8096 -e HOME=/root -e LANG=en_US.UTF-8 -e LANGUAGE=en_US.UTF-8 -e PUID=1000 -e PGID=1000 linuxserver/jellyfin:10.10.3
+ExecStart=/usr/bin/docker run --rm --name %n -v /var/lib/jellyfin/config:/config -v /media/ocz/transcodes:/config/data/transcodes -v /media/wd/data/Movies:/data -p 9096:8096 -e HOME=/root -e LANG=en_US.UTF-8 -e LANGUAGE=en_US.UTF-8 -e PUID=1000 -e PGID=1000 linuxserver/jellyfin:10.10.3
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
