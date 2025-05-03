@@ -7,7 +7,7 @@ Requires=docker.service
 User=readynas
 Restart=always
 ExecStartPre=/bin/sleep 60
-ExecStart=/usr/bin/docker run --rm --name %n -p 6881:6881 -p6880:6880 -p 8113:8113  -v /media/wd/data:/media/wd/data -v /home/readynas/.rtorrent.rc:/etc/rtorrent/rtorrent.rc jesec/rtorrent:0.9.8-r16
+ExecStart=/usr/bin/docker run --rm --name %n -p 6881:6881 -p6880:6880 -p 8113:8113 -u 1000:1000 -v /media/wd/data:/media/wd/data -v /home/readynas/.rtorrent.rc:/etc/rtorrent/rtorrent.rc jesec/rtorrent:0.9.8-r16
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
