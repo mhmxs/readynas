@@ -1,7 +1,7 @@
 [Unit]
 Description=Flood service
-After=docker.service
-Requires=docker.service
+After=rtorrent.service
+Requires=rtorrent.service
 
 [Service]
 TimeoutStartSec=0
