@@ -1,7 +1,23 @@
-system.daemon.set = true
+# Required for ruTorrent
+execute2 = {sh,-c,/usr/bin/php7 /app/rutorrent/php/initplugins.php abc &}
+execute.nothrow = rm,/run/php/.rtorrent.sock
+network.scgi.open_local = /run/php/.rtorrent.sock
+schedule2 = socket_chmod,0,0,"execute=chmod,0660,/run/php/.rtorrent.sock"
+schedule2 = socket_chgrp,0,0,"execute=chgrp,abc,/run/php/.rtorrent.sock"
 
-directory.default.set = /media/wd/data
+# Logging
+log.open_file = "rtorrent", /config/log/rtorrent/rtorrent.log
+log.add_output = "info", "rtorrent"
 
+# Throttling
+throttle.min_peers.normal.set = 40
+throttle.max_peers.normal.set = 1200
+throttle.max_uploads.global.set = 15
+# Optionally, set this per torrent:
+# throttle.max_uploads.set = 5
+
+# Directories
+# schedule2 = watch_directory_1,5,5,"load.start=/downloads/watched/*.torrent"
 schedule2 = watch_directory_film,20,10,"load.start=/media/wd/data/Watch/film/*.torrent,d.directory.set=/media/wd/data/Watch/film/,d.custom1.set=film"
 schedule2 = watch_directory_ismterj,21,10,"load.start=/media/wd/data/Watch/ismterj/*.torrent,d.directory.set=/media/wd/data/Watch/ismterj/,d.custom1.set=ismterj"
 schedule2 = watch_directory_mese,22,10,"load.start=/media/wd/data/Watch/mese/*.torrent,d.directory.set=/media/wd/data/Watch/mese/,d.custom1.set=mese"
@@ -9,23 +25,31 @@ schedule2 = watch_directory_sorozat,23,10,"load.start=/media/wd/data/Watch/soroz
 schedule2 = watch_directory_verseny,24,10,"load.start=/media/wd/data/Watch/verseny/*.torrent,d.directory.set=/media/wd/data/Watch/verseny/,d.custom1.set=verseny"
 schedule2 = watch_directory_mesefilm,25,10,"load.start=/media/wd/data/Watch/mesefilm/*.torrent,d.directory.set=/media/wd/data/Watch/mesefilm/,d.custom1.set=mesefilm"
 schedule2 = untied_directory,26,10,stop_untied=
-
+directory = /media/wd/data
+session = /config/rtorrent/rtorrent_sess
 method.insert = d.data_path,simple,"if=(d.is_multi_file),(cat,(d.directory),/),(cat,(d.directory),/,(d.name))"
 method.insert = d.target_path,simple,"cat=/media/wd/data/Movies/,$d.custom1="
 method.insert = d.copy_to_complete,simple,"execute=mkdir,-p,$argument.1=; execute=cp,-r,-f,$argument.0=,$argument.1=; d.save_full_session="
 method.set_key = event.download.finished,copy_complete,"d.copy_to_complete=$d.data_path=,$d.target_path="
-method.set_key = event.download.erased,delete_files,"execute=rm,-rf,--,$d.data_path="
 
+# Stop torrents when your drive has <100M free disk space
+schedule = low_diskspace,5,60,close_low_diskspace=100M
 
+# Ports
+network.port_range.set = 6881-6881
+network.port_random.set = no
+
+# Downloading settings
+pieces.hash.on_completion.set = yes
+protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+
+# DHT / PEX settings
+# set to "disable" to disable
+dht.mode.set = auto
+dht.port.set = 6880
+# set to "no" to disable
+protocol.pex.set = yes
+# set to "no" to disable
 trackers.use_udp.set = yes
 
-protocol.encryption.set = allow_incoming,enable_retry,try_outgoing
-
-dht.mode.set = on
-
-network.port_range.set = 6881-6881
-dht.port.set = 6880
-
-protocol.pex.set = yes
-
-scgi_port = 0.0.0.0:8113
+encoding.add = utf8
