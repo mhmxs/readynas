@@ -11,6 +11,8 @@ services:
   prometheus:
     image: prom/prometheus:v2.51.1
     container_name: prometheus
+    ports:
+      - '7002:9090'
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     volumes:
@@ -26,7 +28,7 @@ services:
     volumes:
       - /var/lib/grafana:/var/lib/grafana
     restart: unless-stopped
-    user: 1000:1000 
+    user: 1000:1000
     #password: root123
   node_exporter:
     image: quay.io/prometheus/node-exporter:v1.7.0
