@@ -7,7 +7,7 @@ Requires=docker.service
 TimeoutStartSec=0
 Restart=always
 User=readynas
-ExecStart=/usr/bin/docker run --rm --name %n -v /media/wd/data/backup/bedrock:/data -p 19132:19132/udp -e EULA=TRUE itzg/minecraft-bedrock-server
+ExecStart=/usr/bin/docker run --rm --name %n -v /media/ocz/bedrock:/data -p 19132:19132/udp -e EULA=TRUE -e OPS="2535423460141623" -e ALLOW_LIST_USERS="PIXELES_REGO:2535423460141623,Marcixbox8931:2535416298077400,Katli123lenke:2535429202887261,FelixsnsOG:2535432807051959,noaht559352:2535415427817704,Szihazmikes:2533274997613265" itzg/minecraft-bedrock-server
 ExecStop=/usr/bin/docker stop %n
 ExecStopPost=/usr/bin/docker rm %n
 
