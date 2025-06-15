@@ -1,0 +1,14 @@
+[Unit]
+Description=Samba service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStart=/usr/bin/docker run --rm --name %n -p 445:445 -e NAME=download -e USER=readynas -e "PASS=****" -e UID=1000 -e GUI=1000  -v /media/wd/data:/storage dockurr/samba:4.21
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
