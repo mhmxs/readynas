@@ -1,0 +1,15 @@
+[Unit]
+Description=Tdarr service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+User=station
+ExecStart=/usr/bin/docker run --rm --ame %n -v /var/lib/lighttpd/config:/etc/lighttpd:r -v /var/lib/lighttpd/www:/var/www/html:r -p 8080:8080 mhmxs/lighttpd
+ExecStop=/usr/bin/docker stop %n
+ExecStopPost=/usr/bin/docker rm %n
+
+[Install]
+WantedBy=multi-user.target
